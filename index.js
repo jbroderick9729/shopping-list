@@ -3,12 +3,12 @@
 // permanently remove items from the list
 // Additionally:
 
-function shoppingList(){
-    $('button').on('click', function(event){
+function addItem(){
+    $('#js-shopping-list-form').submit(function(event){
         // alert('submitting');
         event.preventDefault();
         let item = $('#shopping-list-entry').val();
-        // alert(item);
+        // alert(item); 
         $('.shopping-list').append(
             `<li>
                 <span class="shopping-item">${item}</span>
@@ -23,11 +23,18 @@ function shoppingList(){
       </li>`
         );
         $('#shopping-list-entry').val("");
-       
-       
-        
+    });      
+}
 
+function deleteItem(){
+    $('.shopping-list').on('click', '.shopping-item-delete', function(event){
+        $(this).closest('li').remove();
     })
+}
+
+function shoppingList(){
+    addItem();
+    deleteItem();
 }
 
 $(shoppingList);
